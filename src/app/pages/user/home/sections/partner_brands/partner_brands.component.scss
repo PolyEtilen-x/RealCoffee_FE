@@ -1,0 +1,42 @@
+.partners {
+  padding: 5rem 10%;
+  background: #111;
+  color: #ddd;
+
+  h2 {
+    color: #c7a17a;
+  }
+
+  .sub {
+    margin-bottom: 2rem;
+    color: #aaa;
+  }
+
+  .list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    padding: 0.8rem 1.6rem;
+    border: 1px solid #333;
+    border-radius: 30px;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #1d1d1d;
+    }
+  }
+}
+
+/* reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,12 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TopbarComponent } from './core/topbar/topbar.component';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [
+    RouterOutlet,
+    TopbarComponent
+  ],
 })
-export class App {
-  protected readonly title = signal('real-coffee-fe');
-}
+export class AppComponent {}
