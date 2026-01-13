@@ -1,40 +1,42 @@
 .about {
-  padding: 6rem 10%;
-  background: #0f0f0f;
-  color: #fff;
+    padding: 6rem 10%;
+    background: #fff;
+    color: var(--text-main);
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
 .image img {
-  width: 100%;
-  border-radius: 16px;
-  display: block;
+    width: 100%;
+    border-radius: 16px;
+    display: block;
 }
 
 /* content */
 .content h2 {
-  font-size: 2.4rem;
-  color: #c7a17a;
-  margin-bottom: 1.5rem;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: var(--coffee-dark);
+    margin-bottom: 1.5rem;
 }
 
 .content p {
-  color: #ccc;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
 }
 
 .content button {
-  margin-top: 1.5rem;
-  padding: 0.8rem 1.6rem;
-  border-radius: 30px;
-  border: none;
-  background: #c7a17a;
-  cursor: pointer;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 30px;
+    border: none;
+    background: var(--coffee-main);
+    color: #fff;
+    cursor: pointer;
 }

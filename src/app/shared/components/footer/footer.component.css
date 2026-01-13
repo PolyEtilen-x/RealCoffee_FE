@@ -1,6 +1,6 @@
 .footer {
-  background: #000;
-  color: #bbb;
+  background: #f2efe9;
+  color: var(--text-muted);
   padding-top: 4rem;
 }
 
@@ -13,8 +13,9 @@
 
 .col h3,
 .col h4 {
-  color: #c7a17a;
+  color: var(--coffee-dark);
   margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .col p {
@@ -28,13 +29,16 @@
 }
 
 .col ul li {
+  color: var(--coffee-main);
   margin-bottom: 0.6rem;
+  font-weight: 500;
 }
 
 .col ul li a {
-  color: #bbb;
+  color: var(--coffee-main);
   text-decoration: none;
   font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .col ul li a:hover {
@@ -46,7 +50,7 @@
 }
 
 .bottom {
-  border-top: 1px solid #222;
+  border-top: 3px solid var(--border-light);
   text-align: center;
   padding: 1.2rem;
   font-size: 0.9rem;
