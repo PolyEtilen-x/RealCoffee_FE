@@ -1,0 +1,55 @@
+.cta {
+  position: relative;
+  padding: 6rem 10%;
+  background: url('/assets/images/cta-bg.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.content {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.content h2 {
+  font-size: 2.4rem;
+  color: #c7a17a;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #ddd;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: #c7a17a;
+  color: #000;
+}
+
+.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #c7a17a;
+}

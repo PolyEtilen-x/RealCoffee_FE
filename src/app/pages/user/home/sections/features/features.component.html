@@ -1,0 +1,19 @@
+<section class="features">
+  <div class="container">
+
+    <h2 class="section-title reveal" appReveal>
+      Giá trị cốt lõi của Real Coffee
+    </h2>
+
+    <div class="grid">
+      @for (f of features; track f.title) {
+        <div class="card reveal" appReveal>
+          <div class="icon">{{ f.icon }}</div>
+          <h3>{{ f.title }}</h3>
+          <p>{{ f.desc }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
