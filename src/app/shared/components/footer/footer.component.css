@@ -1,6 +1,54 @@
 .footer {
-  padding: 2rem;
-  text-align: center;
   background: #000;
-  color: #aaa;
+  color: #bbb;
+  padding-top: 4rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 3rem;
+  padding: 0 10% 3rem;
+}
+
+.col h3,
+.col h4 {
+  color: #c7a17a;
+  margin-bottom: 1rem;
+}
+
+.col p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.col ul li a {
+  color: #bbb;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.col ul li a:hover {
+  color: #c7a17a;
+}
+
+.contact li {
+  font-size: 0.95rem;
+}
+
+.bottom {
+  border-top: 1px solid #222;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+  color: #777;
 }
