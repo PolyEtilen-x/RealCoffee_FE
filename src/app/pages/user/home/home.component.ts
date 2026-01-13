@@ -1,23 +1,18 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
+
 import { HeroComponent } from './sections/hero/hero.component';
-import { AboutComponent } from './sections/about/about.component';
-import { FeaturedComponent } from './sections/featured/featured.component';
-import { PartnerBrandsComponent } from './sections/partner_brands/partner_brands.component';
 
 @Component({
-  selector: 'app-landing',
+  selector: 'app-home',
   standalone: true,
   imports: [
+    HeaderComponent,
     HeroComponent,
-    AboutComponent,
-    FeaturedComponent,
-    PartnerBrandsComponent
+    FooterComponent
   ],
-  template: `
-    <app-hero></app-hero>
-    <app-about></app-about>
-    <app-featured></app-featured>
-    <app-partner-brands></app-partner-brands>
-  `
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
 export class HomeComponent {}
