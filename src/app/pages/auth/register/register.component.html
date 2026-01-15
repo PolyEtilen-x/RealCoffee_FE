@@ -1,0 +1,21 @@
+<section class="auth">
+  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+
+    <h2>Register</h2>
+
+    <input placeholder="Full name" formControlName="name" />
+    <input placeholder="Email" formControlName="email" />
+    <input type="password" placeholder="Password" formControlName="password" />
+    <input type="password" placeholder="Confirm password" formControlName="confirm" />
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Creating...' : 'Register' }}
+    </button>
+
+    <p class="switch">
+      Đã có tài khoản?
+      <a routerLink="/login">Login</a>
+    </p>
+
+  </form>
+</section>

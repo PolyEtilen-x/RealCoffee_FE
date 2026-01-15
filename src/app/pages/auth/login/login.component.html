@@ -1,0 +1,32 @@
+<section class="auth">
+  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+
+    <h2>Login</h2>
+
+    <input
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+
+    <small *ngIf="form.controls.email.touched && form.controls.email.invalid">
+      Email không hợp lệ
+    </small>
+
+    <input
+      type="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Signing in...' : 'Login' }}
+    </button>
+
+    <p class="switch">
+      Chưa có tài khoản?
+      <a routerLink="/register">Register</a>
+    </p>
+
+  </form>
+</section>

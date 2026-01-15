@@ -6,12 +6,12 @@
 }
 
 .title {
-  text-align: center;
-  font-size: clamp(1.4rem, 2vw, 1.8rem);
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--coffee-dark);
-  margin-bottom: clamp(2rem, 6vh, 4rem);
+    text-align: center;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--coffee-dark);
+    margin-bottom: clamp(2rem, 6vh, 4rem);
 }
 
 .quality-body {
@@ -44,7 +44,7 @@
 
 .list li {
   margin-bottom: 0.8rem;
-  font-size: clamp(1.4rem, 1.2vw, 1.05rem);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
   color: var(--coffee-dark);
   position: relative;
   padding-left: 1.4rem;
@@ -59,7 +59,7 @@
 
 .note {
   font-weight: 600;
-  font-size: clamp(1.8rem, 1.2vw, 1.05rem);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
   color: var(--coffee-dark);
 }
 
