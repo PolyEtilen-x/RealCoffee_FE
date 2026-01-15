@@ -1,0 +1,39 @@
+.farm-to-cup {
+  padding: 4rem 10%;
+  background: var(--bg-section);
+  text-align: center;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--coffee-dark);
+  margin-bottom: 2.5rem;
+}
+
+.diagram-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.diagram-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+@media (max-width: 768px) {
+  .farm-to-cup {
+    padding: 3rem 1.2rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .diagram-wrapper img {
+    width: 100%;
+  }
+}

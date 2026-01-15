@@ -1,23 +1,32 @@
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 10%;
-    background: #f2efe9;
-    color: var(--coffee-dark);
-    font-weight: 600;
+    background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
+
+
+.header-inner {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.1rem;
     color: var(--coffee-dark);
-}
+    }
 
 .logo img {
     height: 42px;
@@ -26,8 +35,35 @@
 }
 
 nav a {
-    margin-left: 1.0rem;
-    color: var(--coffee-main);
-    text-decoration: none;
-    line-height: 1; 
+    margin-left: 1.2rem;
+    color: var(--coffee-dark);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+
+.header.scrolled {
+    background: #fff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.header.scrolled .logo,
+.header.scrolled nav a {
+    color: var(--coffee-dark);
+    font-weight: 600;
+}
+
+nav a.active {
+  color: var(--coffee-main);
+  position: relative;
+}
+
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--coffee-main);
 }

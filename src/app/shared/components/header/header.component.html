@@ -1,14 +1,19 @@
-<header class="header">
-    <div class="logo">
-        <img src="../../../../assets/images/logo_realcf.png" alt="cf"/>
-        <span>Real Coffee</span>
-    </div>
-  <nav>
-    <a href="">Trang chủ</a>
-    <a href="#">Giới thiệu</a>
-    <a href="#">Sản phẩm</a>
-    <a href="#">Thương hiệu khác</a>
-    <a href="#">Bài viết</a>
-    <a href="#">Đăng nhập</a>
-  </nav>
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="container header-inner">
+
+    <div class="logo" routerLink="/">
+    <img src="assets/images/logo_realcf.png" alt="Real Coffee" />
+    <span>Real Coffee</span>
+  </div>
+
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a href="#">Service</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
 </header>

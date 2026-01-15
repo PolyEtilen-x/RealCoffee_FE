@@ -1,0 +1,35 @@
+<section class="hero">
+
+    <div class="slides">
+        @for (slide of slides; let i = $index; track i) {
+        <div
+            class="slide"
+            [class.active]="i === currentIndex"
+            [style.backgroundImage]="'url(' + slide.image + ')'"
+        >
+            <div class="overlay"></div>
+
+            <div class="content">
+                <h1 class="title">{{ slide.title }}</h1>
+                <p class="subtitle">{{ slide.subtitle }}</p>
+                <button class="cta">{{ slide.cta }}</button>
+            </div>
+        </div>
+        }
+    </div>
+
+        //controls
+    <button class="nav prev" (click)="prev()">‹</button>
+    <button class="nav next" (click)="next()">›</button>
+
+        //dots
+    <div class="dots">
+        @for (slide of slides; let i = $index; track i) {
+        <span
+            class="dot"
+            [class.active]="i === currentIndex"
+            (click)="goTo(i)"
+        ></span>
+        }
+    </div>
+</section>
