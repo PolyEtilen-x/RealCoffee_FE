@@ -1,4 +1,4 @@
-<!-- <section class="auth">
+<section class="auth">
   <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
 
     <h2>Login</h2>
@@ -9,9 +9,10 @@
       formControlName="email"
     />
 
-    <small *ngIf="form.controls.email.touched && form.controls.email.invalid">
+    <small *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
       Email không hợp lệ
     </small>
+
 
     <input
       type="password"
@@ -29,4 +30,4 @@
     </p>
 
   </form>
-</section> -->
+</section>
