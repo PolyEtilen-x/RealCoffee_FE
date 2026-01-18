@@ -182,3 +182,57 @@
     max-width: 400px;
   }
 }
+
+.password-rules {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.password-rules div {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  font-weight: 400;
+  margin-bottom: 4px;
+  transition: 0.2s;
+}
+
+.password-rules span {
+  width: 18px;
+  margin-right: 6px;
+  text-align: center;
+}
+
+.password-rules div.active {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* BUTTON */
+button.submit-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* chưa hợp lệ */
+button.submit-btn:disabled {
+  background: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* hợp lệ */
+button.submit-btn:not(:disabled) {
+  background: #c69c6d; /* màu cà phê sáng */
+  color: #fff;
+}
+
+button.submit-btn:not(:disabled):hover {
+  background: #b5895c;
+}

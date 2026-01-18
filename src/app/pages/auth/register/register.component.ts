@@ -19,16 +19,46 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class RegisterComponent {
 
-  email = '';
-  password = '';
-  confirmPassword = '';
-  error = '';
-  loading = false;
+    email = '';
+    password = '';
+    confirmPassword = '';
+    error = '';
+    loading = false;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+    passwordRules = {
+    upper: false,
+    lower: false,
+    number: false,
+    length: false
+    };
+
+    checkPassword(value: string) {
+        this.password = value;
+
+        this.passwordRules.upper = /[A-Z]/.test(value);
+        this.passwordRules.lower = /[a-z]/.test(value);
+        this.passwordRules.number = /[0-9]/.test(value);
+        this.passwordRules.length = value.length >= 8
+    }
+
+    isPasswordMatch(): boolean {
+        return !!(
+            this.password &&
+            this.confirmPassword &&
+            this.password === this.confirmPassword
+        );
+    }
+
+
+    isFormValid(): boolean {
+        const r = this.passwordRules;
+        return r.upper && r.lower && r.number && r.length && this.isPasswordMatch();
+    }
+
+    constructor(
+        private authService: AuthService,
+        private router: Router
+    ) {}
 
     submit() {
         this.error = '';

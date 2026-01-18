@@ -31,6 +31,10 @@ export class LoginComponent {
   ) {}
 
   submit() {
+    console.log('[FE LOGIN DATA]', {
+      email: this.email,
+      password: this.password
+    });
     this.error = '';
     this.loading = true;
 

@@ -51,7 +51,29 @@
               placeholder="Mật khẩu"
               [(ngModel)]="password"
               name="password"
+              (input)="checkPassword($event.target.value)"
             />
+          </div>
+          <div class="password-rules">
+            <div [class.active]="passwordRules.upper">
+              <span>{{ passwordRules.upper ? '✔' : '✖' }}</span>
+              Có chữ in hoa
+            </div>
+
+            <div [class.active]="passwordRules.lower">
+              <span>{{ passwordRules.lower ? '✔' : '✖' }}</span>
+              Có chữ thường
+            </div>
+
+            <div [class.active]="passwordRules.number">
+              <span>{{ passwordRules.number ? '✔' : '✖' }}</span>
+              Có số
+            </div>
+
+            <div [class.active]="passwordRules.length">
+              <span>{{ passwordRules.length ? '✔' : '✖' }}</span>
+              Ít nhất 8 ký tự
+            </div>
           </div>
 
           <div class="input-group">
@@ -62,9 +84,15 @@
               name="confirmPassword"
             />
           </div>
+          <div class="password-rules">
+            <div [class.active]="isPasswordMatch()">
+              <span>{{ isPasswordMatch() ? '✔' : '✖' }}</span>
+              Mật khẩu trùng khớp
+            </div>
+          </div>
 
-          <button class="register-btn" type="submit" [disabled]="loading">
-            {{ loading ? 'Đang xử lý...' : 'ĐĂNG KÝ' }}
+          <button class="register-btn" type="submit" [disabled]="!isFormValid()">
+            {{ loading ? 'Đang xử lý...' : 'Đăng ký' }}
           </button>
 
         </form>
