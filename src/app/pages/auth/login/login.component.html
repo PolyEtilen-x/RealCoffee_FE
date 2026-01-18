@@ -1,33 +1,68 @@
-<section class="auth">
-  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+<!-- HEADER BAR -->
+<header class="header-bar">
+  <div class="header-left">
+    <img src="assets/images/logo_realcf.png" alt="Real Coffee" />
+    <span class="brand-name">Real Coffee</span>
+  </div>
 
-    <h2>Login</h2>
+  <div class="header-right">
+    <span class="login-text">Đăng nhập</span>
+  </div>
+</header>
 
-    <input
-      type="email"
-      placeholder="Email"
-      formControlName="email"
-    />
+<!-- BODY -->
+<main class="login-body">
 
-    <small *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-      Email không hợp lệ
-    </small>
+  <div class="login-grid">
 
+    <!-- LEFT SIDE -->
+    <div class="left-side">
+      <div class="brand-big">
+        <img src="assets/images/logo_realcf.png" alt="Real Coffee" />
+        <h1>Real Coffee</h1>
+      </div>
 
-    <input
-      type="password"
-      placeholder="Password"
-      formControlName="password"
-    />
+      <p class="slogan">
+        Nền tảng thương mại cà phê <br />
+        kết nối thương hiệu & người tiêu dùng
+      </p>
+    </div>
 
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Signing in...' : 'Login' }}
-    </button>
+    <!-- RIGHT SIDE -->
+    <div class="right-side">
+      <div class="login-box">
 
-    <p class="switch">
-      Chưa có tài khoản?
-      <a routerLink="/register">Register</a>
-    </p>
+        <h2 class="form-title">Đăng nhập</h2>
 
-  </form>
-</section>
+        <form>
+          <div class="input-group">
+            <input type="text" placeholder="Email hoặc số điện thoại" />
+          </div>
+
+          <div class="input-group">
+            <input type="password" placeholder="Mật khẩu" />
+          </div>
+
+          <button class="login-btn">Đăng nhập</button>
+        </form>
+
+        <div class="divider">HOẶC</div>
+
+        <button class="google-btn">
+          <img src="assets/images/google-icon.png" />
+          Đăng nhập với Google
+        </button>
+
+        <div class="register-hint">
+          <div>
+            <span>Bạn mới biết đến RealCoffee?</span>
+            <a routerLink="/register">Đăng ký</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<app-footer></app-footer>

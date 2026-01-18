@@ -1,52 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-    ReactiveFormsModule,
-    FormBuilder,
-    Validators,
-    FormGroup
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
     selector: 'app-register',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        FooterComponent
+    ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
-    loading = false;
-    form!: FormGroup;
+  email = '';
+  password = '';
+  confirmPassword = '';
+  error = '';
+  loading = false;
 
-    constructor(
-        private fb: FormBuilder,
-        private router: Router
-    ) {}
-   
-    ngOnInit(): void {
-        this.form = this.fb.group({
-            name: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required],
-            confirm: ['', Validators.required]
-        });
-    }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
     submit() {
-        if (this.form.invalid) return;
-
-        if (this.form.value.password !== this.form.value.confirm) {
-        alert('Password không khớp');
-        return;
-        }
-
+        this.error = '';
         this.loading = true;
 
-        setTimeout(() => {
-        this.loading = false;
-        this.router.navigate(['/login']);
-        }, 1000);
+        this.authService.register(this.email, this.password).subscribe({
+            next: () => {
+            console.log('[FE] Register success');
+            this.loading = false;
+            this.router.navigate(['/login']);
+            },
+            error: err => {
+            console.error('[FE] Register error', err);
+            this.loading = false;
+            this.error = 'Đăng ký thất bại';
+            }
+        });
     }
 }
