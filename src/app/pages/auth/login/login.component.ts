@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 @Component({
@@ -29,6 +28,16 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  showSellerPopup = false;
+
+  openSellerPopup() {
+    this.showSellerPopup = true;
+  }
+
+  closeSellerPopup() {
+    this.showSellerPopup = false;
+  }
 
   submit() {
     console.log('[FE LOGIN DATA]', {

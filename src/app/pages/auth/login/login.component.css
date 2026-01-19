@@ -195,6 +195,23 @@ body {
   transform: scaleX(1);
 }
 
+.seller-register {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.seller-register a {
+  color: #8b5e34;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.seller-register a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 900px) {
 
   .login-grid {

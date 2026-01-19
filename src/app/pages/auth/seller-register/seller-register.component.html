@@ -1,0 +1,124 @@
+<!-- HEADER BAR -->
+<header class="seller-header-bar">
+  <div class="seller-header-left">
+    <img src="assets/images/logo_realcf.png" alt="Real Coffee" />
+    <span class="seller-brand-name">Real Coffee</span>
+  </div>
+
+  <div class="seller-header-right">
+    <span>Đăng ký bán hàng</span>
+  </div>
+</header>
+
+<!-- BODY -->
+<main class="seller-register-body">
+  <div class="seller-register-grid">
+
+    <!-- LEFT -->
+    <div class="seller-left-side">
+      <div class="seller-brand-big">
+        <img src="assets/images/logo_realcf.png" />
+        <h1>Real Coffee</h1>
+      </div>
+
+      <p class="seller-slogan">
+        Tham gia hệ sinh thái cà phê <br />
+        cùng Real Coffee ngay hôm nay
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="seller-right-side">
+      <div class="seller-register-box">
+
+        <h2 class="seller-form-title">Đăng ký bán hàng</h2>
+
+        <form (ngSubmit)="submit()">
+
+          <!-- ACCOUNT -->
+          <div class="seller-input-group">
+            <input
+              type="text"
+              placeholder="Email hoặc số điện thoại"
+              [(ngModel)]="email"
+              name="email"
+            />
+          </div>
+
+          <div class="seller-input-group">
+            <input
+              type="password"
+              placeholder="Mật khẩu"
+              [(ngModel)]="password"
+              name="password"
+            />
+          </div>
+
+          <div class="seller-password-rules">
+            <div [class.active]="passwordRules.upper">
+              <span>{{ passwordRules.upper ? '✔' : '✖' }}</span> Có chữ in hoa
+            </div>
+            <div [class.active]="passwordRules.lower">
+              <span>{{ passwordRules.lower ? '✔' : '✖' }}</span> Có chữ thường
+            </div>
+            <div [class.active]="passwordRules.number">
+              <span>{{ passwordRules.number ? '✔' : '✖' }}</span> Có số
+            </div>
+            <div [class.active]="passwordRules.length">
+              <span>{{ passwordRules.length ? '✔' : '✖' }}</span> Ít nhất 8 ký tự
+            </div>
+          </div>
+
+          <div class="seller-input-group">
+            <input
+              type="password"
+              placeholder="Xác nhận mật khẩu"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+            />
+          </div>
+
+          <div class="seller-password-rules">
+            <div [class.active]="isPasswordMatch()">
+              <span>{{ isPasswordMatch() ? '✔' : '✖' }}</span>
+              Mật khẩu trùng khớp
+            </div>
+          </div>
+
+          <!-- SELLER EXTRA -->
+          <div class="seller-extra">
+            <h3>Thông tin thương hiệu</h3>
+
+            <select [(ngModel)]="brandMode" name="brandMode">
+              <option value="existing">Chọn brand có sẵn</option>
+              <option value="new">Tạo brand mới</option>
+            </select>
+
+            <div *ngIf="brandMode === 'new'">
+              <input placeholder="Tên brand" [(ngModel)]="brand.name" name="brandName" />
+              <textarea placeholder="Mô tả brand" [(ngModel)]="brand.description"></textarea>
+              <input placeholder="Số điện thoại" [(ngModel)]="brand.phone" />
+              <input placeholder="Địa chỉ" [(ngModel)]="brand.address" />
+            </div>
+          </div>
+
+          <button
+            class="seller-submit-btn"
+            type="submit"
+            [disabled]="!isFormValid()"
+          >
+            Đăng ký bán hàng
+          </button>
+        </form>
+
+        <p class="seller-switch">
+          Đã có tài khoản?
+          <a routerLink="/login">Đăng nhập</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

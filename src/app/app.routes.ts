@@ -19,6 +19,12 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
+  {
+  path: 'register-seller',
+    loadComponent: () =>
+      import('./pages/auth/seller-register/seller-register.component')
+        .then(m => m.SellerRegisterComponent)
+  },
 
   {
   path: 'admin',
