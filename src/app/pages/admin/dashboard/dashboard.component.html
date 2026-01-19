@@ -1,0 +1,36 @@
+<h1>Dashboard</h1>
+
+<div class="cards">
+  <div class="card">
+    <h3>Tổng doanh thu</h3>
+    <p class="value">{{ totalRevenue | number }} đ</p>
+    <span class="growth">
+      {{ getGrowth(totalRevenue, lastMonthRevenue) }}% so với tháng trước
+    </span>
+  </div>
+
+  <div class="card">
+    <h3>Doanh thu brand chính</h3>
+    <p class="value">{{ mainBrandRevenue | number }} đ</p>
+    <span class="growth">
+      {{ getGrowth(mainBrandRevenue, lastMonthMainBrand) }}% so với tháng trước
+    </span>
+  </div>
+</div>
+
+<h2>Doanh thu các brand khác</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Doanh thu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let b of otherBrands">
+      <td>{{ b.name }}</td>
+      <td>{{ b.revenue | number }} đ</td>
+    </tr>
+  </tbody>
+</table>

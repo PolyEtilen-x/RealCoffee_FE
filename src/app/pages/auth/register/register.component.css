@@ -220,7 +220,6 @@ button.submit-btn {
   transition: 0.2s;
 }
 
-/* chưa hợp lệ */
 button.submit-btn:disabled {
   background: #ddd;
   color: #999;
@@ -229,7 +228,7 @@ button.submit-btn:disabled {
 
 /* hợp lệ */
 button.submit-btn:not(:disabled) {
-  background: #c69c6d; /* màu cà phê sáng */
+  background: #c69c6d; 
   color: #fff;
 }
 

@@ -1,0 +1,28 @@
+<h1>Quản lý tài khoản</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Hành động</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let u of users">
+      <td>{{ u.email }}</td>
+      <td>{{ u.role }}</td>
+      <td>{{ u.status }}</td>
+      <td>
+        <button
+          *ngIf="u.role === 'seller' && u.status === 'pending'"
+          (click)="approveSeller(u)"
+        >
+          Duyệt
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
