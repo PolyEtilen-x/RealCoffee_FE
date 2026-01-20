@@ -10,24 +10,20 @@
   </div>
 </header>
 
-<!-- BODY -->
 <main class="seller-register-body">
   <div class="seller-register-grid">
 
-    <!-- LEFT -->
     <div class="seller-left-side">
       <div class="seller-brand-big">
         <img src="assets/images/logo_realcf.png" />
         <h1>Real Coffee</h1>
       </div>
-
       <p class="seller-slogan">
-        Tham gia hệ sinh thái cà phê <br />
-        cùng Real Coffee ngay hôm nay
+        Tạo thương hiệu của bạn <br />
+         và bán hàng cùng Real Coffee
       </p>
     </div>
 
-    <!-- RIGHT -->
     <div class="seller-right-side">
       <div class="seller-register-box">
 
@@ -39,7 +35,7 @@
           <div class="seller-input-group">
             <input
               type="text"
-              placeholder="Email hoặc số điện thoại"
+              placeholder="Email của bạn"
               [(ngModel)]="email"
               name="email"
             />
@@ -89,16 +85,48 @@
           <div class="seller-extra">
             <h3>Thông tin thương hiệu</h3>
 
-            <select [(ngModel)]="brandMode" name="brandMode">
-              <option value="existing">Chọn brand có sẵn</option>
-              <option value="new">Tạo brand mới</option>
-            </select>
+            <input 
+              placeholder="Tên thương hiệu *" 
+              [(ngModel)]="brand.name" 
+              name="brandName" 
+            />
+            <textarea 
+              placeholder="Mô tả thương hiệu" 
+              [(ngModel)]="brand.description"
+              name="brandDescription"
+            ></textarea>
+            <input 
+              placeholder="Số điện thoại *" 
+              [(ngModel)]="brand.phone"
+              name="brandPhone" 
+            />
+            <input 
+              placeholder="Địa chỉ *" 
+              [(ngModel)]="brand.address"
+              name="brandAddress" 
+            />
+            <input 
+              placeholder="Mã số thuế " 
+              [(ngModel)]="brand.taxCode"
+              name="brandTaxCode" 
+            />
 
-            <div *ngIf="brandMode === 'new'">
-              <input placeholder="Tên brand" [(ngModel)]="brand.name" name="brandName" />
-              <textarea placeholder="Mô tả brand" [(ngModel)]="brand.description"></textarea>
-              <input placeholder="Số điện thoại" [(ngModel)]="brand.phone" />
-              <input placeholder="Địa chỉ" [(ngModel)]="brand.address" />
+            <div class="upload">
+              <label>Logo thương hiệu *</label>
+              <input type="file" accept="image/*" (change)="onLogoChange($event)" />
+
+              <div class="preview" *ngIf="logoPreview">
+                <img [src]="logoPreview" alt="Logo preview">
+              </div>
+            </div>
+
+            <div class="upload">
+              <label>Giấy đăng ký thương hiệu (trang đầu) *</label>
+              <input type="file" accept="image/*" (change)="onLicenseChange($event)" />
+              
+              <div class="preview" *ngIf="licensePreview">
+                <img [src]="licensePreview" alt="License preview">
+              </div>
             </div>
           </div>
 
@@ -107,9 +135,13 @@
             type="submit"
             [disabled]="!isFormValid()"
           >
-            Đăng ký bán hàng
+            Gửi đăng ký
           </button>
         </form>
+        
+        <p class="note">
+          Hồ sơ sẽ được admin duyệt trước khi bạn có thể bán hàng.
+        </p>
 
         <p class="seller-switch">
           Đã có tài khoản?

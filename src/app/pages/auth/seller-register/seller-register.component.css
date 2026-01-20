@@ -34,6 +34,8 @@
   min-height: calc(100vh - 64px - 60px);
   display: flex;
   align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .seller-register-grid {
@@ -58,15 +60,20 @@
 }
 
 .seller-brand-big img {
-  height: 64px;
+  height: 100px;
+}
+
+.seller-brand-big h1 {
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 .seller-slogan {
   margin-top: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1.6;
 }
 
-/* RIGHT */
 .seller-right-side {
   display: flex;
   justify-content: center;
@@ -88,19 +95,16 @@
   color: var(--coffee-dark);
 }
 
-.seller-input-group input,
-.seller-extra input,
-.seller-extra textarea,
-.seller-extra select {
+input, textarea {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 4px;
+  padding: 0.7rem;
+  margin-bottom: 0.7rem;
   border: 1px solid #ddd;
-  margin-bottom: 1rem;
+  border-radius: 4px;
 }
 
-/* PASSWORD RULES */
 .seller-password-rules {
+  display: block;
   margin-top: 8px;
   font-size: 14px;
 }
@@ -122,11 +126,26 @@
   font-weight: 600;
 }
 
-/* SELLER EXTRA */
 .seller-extra {
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--coffee-dark);
+}
+
+.seller-extra h3 {
+  text-align: center;
+  margin-bottom: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--coffee-dark);
+}
+
+.upload label {
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  display: block;
+  color: var(--coffee-dark);
 }
 
 .seller-extra h3 {
@@ -135,7 +154,6 @@
   color: var(--coffee-dark);
 }
 
-/* BUTTON */
 .seller-submit-btn {
   width: 100%;
   margin-top: 16px;
@@ -153,6 +171,24 @@
   color: #999;
   cursor: not-allowed;
 }
+.note {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.preview {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.preview img {
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+}
 
 /* SWITCH */
 .seller-switch {
@@ -160,7 +196,10 @@
   text-align: center;
   font-size: 0.9rem;
 }
-
+.seller-switch a{
+  color: var(--coffee-dark);
+  font-weight: 600;
+}
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .seller-register-grid {
