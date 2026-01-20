@@ -26,10 +26,10 @@ export class RegisterComponent {
     loading = false;
 
     passwordRules = {
-    upper: false,
-    lower: false,
-    number: false,
-    length: false
+        upper: false,
+        lower: false,
+        number: false,
+        length: false
     };
 
     checkPassword(value: string) {

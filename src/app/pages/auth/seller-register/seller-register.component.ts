@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterModule  } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 @Component({
@@ -11,7 +12,7 @@ import { FooterComponent } from '../../../shared/components/footer/footer.compon
     imports: [
       CommonModule, 
       FormsModule, 
-      RouterLink, 
+      RouterModule, 
       FooterComponent
     ],
     templateUrl: './seller-register.component.html',
@@ -38,6 +39,8 @@ export class SellerRegisterComponent {
   licensePreview: string | null = null;
 
   loading = false;
+  successMessage = '';
+  errorMessage = '';
 
   passwordRules = {
     upper: false,
@@ -56,11 +59,11 @@ export class SellerRegisterComponent {
   }
 
   isPasswordMatch(): boolean {
-        return !!(
-            this.password &&
-            this.confirmPassword &&
-            this.password === this.confirmPassword
-        );
+    return !!(
+        this.password &&
+        this.confirmPassword &&
+        this.password === this.confirmPassword
+    );
   }
 
   onLogoChange(event: Event) {
@@ -86,7 +89,6 @@ export class SellerRegisterComponent {
     return!! (
       this.email&&
       r.upper && r.lower && r.number && r.length && 
-      this.isPasswordMatch() &&
       this.brand.name &&
       this.brand.phone &&
       this.brand.address &&
@@ -95,13 +97,50 @@ export class SellerRegisterComponent {
     )
   }
   
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
   submit() {
-    console.log('REGISTER SELLER DATA', {
-      email: this.email,
-      password: this.password,
-      brand: this.brand,
-      logo: this.logoFile,
-      license: this.licenseFile,
+    if (!this.isFormValid()) return;
+
+    this.loading = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    const formData = new FormData();
+
+    formData.append('email', this.email);
+    formData.append('password', this.password);
+
+    formData.append('brand[name]', this.brand.name);
+    formData.append('brand[description]', this.brand.description);
+    formData.append('brand[phone]', this.brand.phone);
+    formData.append('brand[address]', this.brand.address);
+    formData.append('brand[taxCode]', this.brand.taxCode);
+
+    // FILE
+    if (this.logoFile) {
+      formData.append('logo', this.logoFile);
+    }
+
+    if (this.licenseFile) {
+      formData.append('licenseImage', this.licenseFile);
+    }
+
+    this.authService.registerSeller(formData).subscribe({
+      next: () => {
+        this.loading = false;
+        this.successMessage =
+          'Đăng ký thành công. Hồ sơ của bạn đang chờ admin duyệt.';
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errorMessage =
+          err?.error?.message || 'Đăng ký thất bại. Vui lòng thử lại.';
+      },
     });
   }
+
 }

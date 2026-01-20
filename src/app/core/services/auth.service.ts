@@ -40,6 +40,10 @@ export class AuthService {
         );
     }
 
+    registerSeller(formData: FormData) {
+        return this.http.post(`${this.API_URL}/register-seller`, formData);
+    }
+
     logout() {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');

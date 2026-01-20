@@ -103,25 +103,28 @@ input, textarea {
   border-radius: 4px;
 }
 
-.seller-password-rules {
-  display: block;
-  margin-top: 8px;
+
+.password-rules {
+  margin-top: 10px;
   font-size: 14px;
 }
 
-.seller-password-rules div {
+.password-rules div {
   display: flex;
   align-items: center;
   color: #aaa;
+  font-weight: 400;
   margin-bottom: 4px;
+  transition: 0.2s;
 }
 
-.seller-password-rules span {
+.password-rules span {
   width: 18px;
   margin-right: 6px;
+  text-align: center;
 }
 
-.seller-password-rules div.active {
+.password-rules div.active {
   color: #2e7d32;
   font-weight: 600;
 }
@@ -200,6 +203,19 @@ input, textarea {
   color: var(--coffee-dark);
   font-weight: 600;
 }
+
+.success {
+  margin-top: 10px;
+  color: #2e7d32;
+  font-size: 14px;
+}
+
+.error {
+  margin-top: 10px;
+  color: #d32f2f;
+  font-size: 14px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .seller-register-grid {
