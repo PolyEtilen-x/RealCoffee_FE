@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { HttpClient } from '@angular/common/http';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 @Component({
@@ -25,8 +25,8 @@ export class LoginComponent {
   error = '';
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   showSellerPopup = false;
@@ -40,29 +40,37 @@ export class LoginComponent {
   }
 
   submit() {
-    console.log('[FE LOGIN DATA]', {
-      email: this.email,
-      password: this.password
-    });
     this.error = '';
     this.loading = true;
 
-    this.authService.login(this.email, this.password).subscribe({
-      next: () => {
-        this.loading = false;
-        this.router.navigate(['/']);
-      },
-      error: err => {
-        this.loading = false;
-        
-        if(err.status === 400 || err.status === 401) {
-          this.error = 'Sai email hoặc mật khẩu'
-        } else if(err.status === 403) {
-          this.error = 'Tài khoản chưa được duyệt'
-        } else  {
-          this.error = 'Đăng nhập thất bại'
-        }
-      }
-    })
+    this.http
+      .post<any>('http://localhost:5000/api/auth/login', {
+        email: this.email,
+        password: this.password,
+      })
+      .subscribe({
+        next: (res) => {
+          const { accessToken, user } = res.data;
+
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('userRole', user.role);
+
+          if (user.role === 'admin') {
+            this.router.navigate(['/admin/dashboard']);
+          } 
+          else if (user.role === 'seller') {
+            this.router.navigate(['/seller/dashboard']);
+          } 
+          else {
+            this.router.navigate(['/']);
+          }
+
+          this.loading = false;
+        },
+        error: (err) => {
+          alert(err.error?.message || 'Login failed');
+          this.loading = false;
+        },
+      });
   }
 }

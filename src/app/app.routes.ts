@@ -3,11 +3,9 @@ import { HomeComponent } from './pages/user/home/home.component';
 import { AboutComponent } from './pages/user/about/about.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { AdminComponent } from './pages/admin/admin.component'
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { UsersComponent } from './pages/admin/users/users.component';
 
 import path from 'path';
+import { adminGuard } from './core/guards/admin.guards';
 
 export const routes: Routes = [
   { path: '', 
@@ -28,11 +26,9 @@ export const routes: Routes = [
 
   {
   path: 'admin',
-    component: AdminComponent,
-    children: [
-      { path: '', component: DashboardComponent },   // 👈 mặc định
-      { path: 'users', component: UsersComponent }
-    ]
+    canActivate: [adminGuard],
+    loadChildren: () => 
+      import('./pages/admin/admin.routes').then( m => m.AdminRoutes)
   },
   //default
   { path: '', redirectTo: '/', pathMatch: 'full' }
