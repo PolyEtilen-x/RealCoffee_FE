@@ -26,11 +26,10 @@ export const routes: Routes = [
 
   {
   path: 'admin',
-    canActivate: [adminGuard],
+    canActivateChild: [adminGuard],
     loadChildren: () => 
       import('./pages/admin/admin.routes').then( m => m.AdminRoutes)
   },
   //default
-  { path: '', redirectTo: '/', pathMatch: 'full' }
-
+  { path: '', redirectTo: '/', pathMatch: 'full' },
 ];

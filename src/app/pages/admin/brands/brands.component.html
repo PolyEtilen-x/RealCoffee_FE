@@ -1,15 +1,21 @@
-<pre>{{brands | json}}</pre>
+<pre>{{ brands() | json }}</pre>
+
 <div class="page">
   <h2>Duyệt thương hiệu</h2>
 
-  <p *ngIf="loading">Đang tải...</p>
-  <p class="error" *ngIf="error">{{ error }}</p>
+  <!-- LOADING -->
+  <p *ngIf="loading()">Đang tải...</p>
 
-  <div *ngIf="!loading && brands.length === 0">
+  <!-- ERROR -->
+  <p class="error" *ngIf="error()">{{ error() }}</p>
+
+  <!-- KHÔNG CÓ BRAND -->
+  <p *ngIf="!loading() && brands().length === 0">
     Không có thương hiệu chờ duyệt
-  </div>
-  
-  <table *ngIf="!loading && brands.length > 0">
+  </p>
+
+  <!-- CÓ BRAND -->
+  <table *ngIf="!loading() && brands().length > 0">
     <thead>
       <tr>
         <th>Brand</th>
@@ -21,7 +27,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let b of brands">
+      <tr *ngFor="let b of brands()">
         <td>{{ b.name }}</td>
         <td>{{ b.ownerId?.email }}</td>
 
@@ -34,22 +40,7 @@
             Xem ảnh
           </a>
         </td>
-
-        <td>
-          <button class="approve" (click)="approve(b._id)">
-            Duyệt
-          </button>
-
-          <button class="reject" (click)="reject(b._id)">
-            Từ chối
-          </button>
-        </td>
       </tr>
     </tbody>
   </table>
-
-  <p *ngIf="!loading && brands.length === 0">
-    Không có brand nào đang chờ duyệt
-  </p>
-
 </div>
