@@ -9,26 +9,25 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
     getPendingBrands() {
-  return this.http.get<any>(`${this.API}/brands/pending`)
-    .pipe(
-      map(res => {
-        console.log('SERVICE MAP =', res.data);
-        return res.data;
-      })
-    );
-}
-
-
-    approveBrand(brandId: string) {
-        return this.http.patch(
-        `${this.API}/brands/${brandId}/approve`,
-        {}
+      return this.http.get<any>(`${this.API}/brands/pending`)
+        .pipe(
+          map(res => {
+            console.log('SERVICE MAP =', res.data);
+            return res.data;
+          })
         );
     }
 
-  rejectBrand(brandId: string, reason?: string) {
+  approveBrand(id: string) {
     return this.http.patch(
-      `${this.API}/brands/${brandId}/reject`,
+      `${this.API}/brands/${id}/approve`,
+      {}
+    );
+  }
+
+  rejectBrand(id: string, reason?: string) {
+    return this.http.patch(
+      `${this.API}/brands/${id}/reject`,
       { reason }
     );
   }
