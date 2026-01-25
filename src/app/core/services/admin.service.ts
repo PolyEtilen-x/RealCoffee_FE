@@ -31,4 +31,24 @@ export class AdminService {
       { reason }
     );
   }
+
+  getApprovedBrands() {
+    return this.http.get<any[]>(
+      `${this.API}/brands/approved`
+    );
+  }
+
+  updateBrand(id: string, data: any) {
+    return this.http.patch<any>(
+      `${this.API}/brands/${id}`,
+      data
+    );
+  }
+
+  deleteBrand(id: string) {
+    return this.http.delete(
+      `${this.API}/brands/${id}`
+    );
+  }
 }
+

@@ -1,13 +1,14 @@
-<h2>Duyệt thương hiệu</h2>
+<!-- ================= BRAND ĐÃ DUYỆT ================= -->
+<h2>Brand đã được duyệt</h2>
 
-<p *ngIf="loading()">Đang tải...</p>
-<p class="error" *ngIf="error()">{{ error() }}</p>
+<p *ngIf="loadingApproved()">Đang tải...</p>
+<p class="error" *ngIf="errorApproved()">{{ errorApproved() }}</p>
 
-<p *ngIf="!loading() && brands().length === 0">
-  Không có thương hiệu chờ duyệt
+<p *ngIf="!loadingApproved() && approvedBrands().length === 0">
+  Chưa có brand nào được duyệt
 </p>
 
-<table *ngIf="!loading() && brands().length > 0">
+<table *ngIf="!loadingApproved() && approvedBrands().length > 0">
   <thead>
     <tr>
       <th>Brand</th>
@@ -19,7 +20,53 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let b of brands()">
+    <tr *ngFor="let b of approvedBrands()">
+      <td>{{ b.name }}</td>
+      <td>{{ b.ownerId?.email }}</td>
+
+      <td>
+        <img [src]="b.logo" width="60" />
+      </td>
+
+      <td>
+        <a [href]="b.licenseImage" target="_blank">Xem ảnh</a>
+      </td>
+
+      <td>
+        <button (click)="editBrand(b)">✏️ Sửa</button>
+        <button (click)="deleteBrand(b._id)" class="danger">
+          🗑️ Xoá
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<!-- ================= BRAND CHỜ DUYỆT ================= -->
+<h2>Duyệt thương hiệu</h2>
+
+<p *ngIf="loadingPending()">Đang tải...</p>
+<p class="error" *ngIf="errorPending()">{{ errorPending() }}</p>
+
+<p *ngIf="!loadingPending() && pendingBrands().length === 0">
+  Không có thương hiệu chờ duyệt
+</p>
+
+<table *ngIf="!loadingPending() && pendingBrands().length > 0">
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Seller</th>
+      <th>Logo</th>
+      <th>Giấy phép</th>
+      <th>Hành động</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let b of pendingBrands()">
       <td>{{ b.name }}</td>
       <td>{{ b.ownerId?.email }}</td>
 

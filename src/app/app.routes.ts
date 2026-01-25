@@ -30,6 +30,13 @@ export const routes: Routes = [
     loadChildren: () => 
       import('./pages/admin/admin.routes').then( m => m.AdminRoutes)
   },
+
+  {
+  path: 'seller',
+    loadChildren: () => 
+      import('./pages/seller/seller.routes').then( m => m.SellerRoutes)
+  },
+  
   //default
   { path: '', redirectTo: '/', pathMatch: 'full' },
 ];

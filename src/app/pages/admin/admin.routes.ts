@@ -15,7 +15,8 @@ export const AdminRoutes: Routes = [
       {
         path: 'brands',
         loadComponent: () =>
-          import('./brands/brands.component').then(m => m.BrandsComponent),
+          import('./brands/brands.component')
+           .then(m => m.BrandsComponent),
       },
       {
         path: '',

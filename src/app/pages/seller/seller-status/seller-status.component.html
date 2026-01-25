@@ -1,0 +1,18 @@
+<p *ngIf="loading()">Đang kiểm tra trạng thái...</p>
+
+<!-- PENDING -->
+<div *ngIf="!loading() && status() === 'pending'">
+  <h2>Thương hiệu đang chờ được duyệt</h2>
+  <p>Thương hiệu <b>{{ brandName() }}</b> đang được admin xem xét.</p>
+  <p>Vui lòng quay lại sau.</p>
+</div>
+
+<!-- REJECTED -->
+<div *ngIf="!loading() && status() === 'rejected'">
+  <h2>Thương hiệu bị từ chối</h2>
+  <p><b>Lý do:</b> {{ reason() }}</p>
+
+  <button routerLink="/seller/register-brand">
+    Gửi lại đăng ký
+  </button>
+</div>
