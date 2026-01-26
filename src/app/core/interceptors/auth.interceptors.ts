@@ -1,24 +1,94 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable, inject } from '@angular/core';
+import {
+  HttpEvent,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, switchMap, filter, take } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const platformId = inject(PLATFORM_ID);
+let isRefreshing = false;
+const refreshTokenSubject = new BehaviorSubject<string | null>(null);
 
-  if (!isPlatformBrowser(platformId)) {
-    return next(req);
-  }
+export const authInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<any>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<any>> => {
+  const authService = inject(AuthService);
 
-  const token = localStorage.getItem('accessToken');
+  let authReq = req;
 
-  if (token) {
-    const authReq = req.clone({
+  const accessToken = authService.getAccessToken();
+
+  if (accessToken) {
+    authReq = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
+      withCredentials: true, // send token = true
     });
-    return next(authReq);
+  } else {
+    authReq = req.clone({
+      withCredentials: true,
+    });
   }
 
-  return next(req);
+  return next(authReq).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (
+        error.status !== 401 ||
+        req.url.includes('/auth/login') ||
+        req.url.includes('/auth/refresh')
+      ) {
+        return throwError(() => error);
+      }
+
+      // wait refreshtoken
+      if (isRefreshing) {
+        return refreshTokenSubject.pipe(
+          filter((token) => token !== null),
+          take(1),
+          switchMap((token) => {
+            return next(
+              req.clone({
+                setHeaders: {
+                  Authorization: `Bearer ${token}`,
+                },
+                withCredentials: true,
+              })
+            );
+          })
+        );
+      }
+
+      // start refresh token
+      isRefreshing = true;
+      refreshTokenSubject.next(null);
+
+      return authService.refreshToken().pipe(
+        switchMap(() => {
+          const newToken = authService.getAccessToken();
+          refreshTokenSubject.next(newToken);
+          isRefreshing = false;
+
+          return next(
+            req.clone({
+              setHeaders: {
+                Authorization: `Bearer ${newToken}`,
+              },
+              withCredentials: true,
+            })
+          );
+        }),
+        catchError((err) => {
+          isRefreshing = false;
+          authService.logout().subscribe();
+          return throwError(() => err);
+        })
+      );
+    })
+  );
 };
